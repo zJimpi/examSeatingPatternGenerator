@@ -3,6 +3,7 @@ package com.pattern.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -30,8 +31,9 @@ public class Student {
 	@Column(length = 20, nullable = false)
 	private String stdEmail;
 	
+	@ManyToOne
 	private Department department;
 	
+	@ManyToOne
 	private Subject subject;
-
 }

@@ -1,8 +1,11 @@
 package com.pattern.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -26,5 +29,10 @@ public class Subject {
 	@Column(length=30, nullable=false)
 	private String subName;
 	
+	@ManyToOne
 	Department department;
+	
+	@ManyToOne
+	private List<Student> students;
+
 }
