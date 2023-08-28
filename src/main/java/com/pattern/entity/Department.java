@@ -25,4 +25,6 @@ public class Department {
 	
 	@Column(length=10, nullable=false)
 	private String deptName;
+	
+	
 }

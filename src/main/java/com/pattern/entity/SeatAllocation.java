@@ -2,6 +2,8 @@ package com.pattern.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,4 +21,11 @@ public class SeatAllocation {
 
 	@Id
 	private int seatNo;
+	
+	@OneToOne
+	private Student student;
+	
+	@OneToOne
+	private Room room;
+	
 }

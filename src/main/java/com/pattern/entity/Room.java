@@ -3,6 +3,7 @@ package com.pattern.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -29,5 +30,8 @@ public class Room {
 	private int startRollNo;
 	
 	private int endRollNo;
+	
+	@OneToOne
+	private SeatAllocation seatAllocation;
 	
 }
