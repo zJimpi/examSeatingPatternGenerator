@@ -31,4 +31,7 @@ public class Department {
 	
 	@OneToMany
 	private List<Student> students;
+	
+	@OneToMany
+	private List<Subject> subjects;
 }

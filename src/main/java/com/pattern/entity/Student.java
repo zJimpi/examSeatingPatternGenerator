@@ -34,5 +34,6 @@ public class Student {
 	@ManyToOne
 	private Department department;
 	
+	@ManyToOne
 	private Subject subject;
 }
