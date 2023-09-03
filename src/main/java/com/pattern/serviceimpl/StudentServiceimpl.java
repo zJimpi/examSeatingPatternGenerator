@@ -6,9 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.pattern.dto.StudentDto;
 import com.pattern.entity.Student;
+import com.pattern.exception.ResourceNotFoundException;
 import com.pattern.repository.StudentRepository;
 import com.pattern.service.StudentService;
 import com.pattern.util.StudentConverter;
+
 
 @Service
 public class StudentServiceimpl implements StudentService{
@@ -31,7 +33,8 @@ public class StudentServiceimpl implements StudentService{
 	@Override
 	public StudentDto getStudentById(int id) {
 		
-		Student std = stdRepository.findById(id).get();
+		Student std = stdRepository.findById(id).orElseThrow(()->
+		new ResourceNotFoundException("Student", "id", id));
 		
 		return stdConverter.convertEntityToStudentDto(std);
 	}
@@ -52,6 +55,9 @@ public class StudentServiceimpl implements StudentService{
 
 	@Override
 	public void deleteStudentById(int id) {
+		
+		stdRepository.findById(id).orElseThrow(()->
+		new ResourceNotFoundException("Student", "id", id));
 		
 		stdRepository.deleteById(id);
 		

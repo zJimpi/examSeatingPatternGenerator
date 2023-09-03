@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.pattern.dto.DepartmentDto;
 import com.pattern.entity.Department;
+import com.pattern.exception.ResourceNotFoundException;
 import com.pattern.repository.DepartmentRepository;
 import com.pattern.service.DepartmentService;
 import com.pattern.util.DepartmentConverter;
@@ -29,7 +30,8 @@ public class DepartmentServiceimpl implements DepartmentService {
 	@Override
 	public DepartmentDto getDepartmentById(int id) {
 		
-		Department dept = deptRepository.findById(id).get();
+		Department dept = deptRepository.findById(id).orElseThrow(()->
+		new ResourceNotFoundException("Student", "id", id));;
 		
 		return deptConverter.convertEntityToDepartmentDto(dept);
 	}
@@ -49,6 +51,9 @@ public class DepartmentServiceimpl implements DepartmentService {
 
 	@Override
 	public void deleteDepartmentById(int id) {
+		
+		deptRepository.findById(id).orElseThrow(()->
+		new ResourceNotFoundException("Department", "id", id));
 		
 		deptRepository.deleteById(id);
 	}
