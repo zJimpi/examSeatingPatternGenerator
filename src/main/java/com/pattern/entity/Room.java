@@ -22,7 +22,7 @@ import lombok.ToString;
 public class Room {
 
 	@Id
-	private int roomNo;
+	private int roomNo;//given by authority
 	
 	@Column(nullable = false)
 	private int noOfSeats;
