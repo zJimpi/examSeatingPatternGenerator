@@ -1,8 +1,11 @@
 package com.pattern.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -34,6 +37,6 @@ public class Student {
 	@ManyToOne
 	private Department department;
 	
-	@ManyToOne
-	private Subject subject;
+	@ManyToMany
+	private List<Subject> subjects;
 }
