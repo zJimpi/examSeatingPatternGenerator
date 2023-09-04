@@ -28,7 +28,7 @@ public class SubjectController {
 	@Autowired
 	SubjectConverter subConverter;
 	
-	@PostMapping("/saveSubject")
+	@PostMapping("/saveSubject")//working
 	public SubjectDto saveSubjectDetails(@Valid @RequestBody SubjectDto subDto)
 	{
 		Subject sub = subConverter.convertSubjectDtoToEntity(subDto);
@@ -36,14 +36,14 @@ public class SubjectController {
 		return subService.saveSubject(sub);
 	}
 	
-	@GetMapping("/getSubjecttById/{id}")
+	@GetMapping("/getSubjecttById/{id}")//working
 	public SubjectDto getSubjectDetailsById(@PathVariable("id") int id)
 	{
 		return subService.getSubjectById(id);
 	}
 	
 	
-	@PutMapping("/updateSubjectById/{subId}")
+	@PutMapping("/updateSubjectById/{subId}")//working
 	public SubjectDto updateSubjectById(@PathVariable("subId") int id,@RequestBody SubjectDto subDto)
 	{
 		Subject sub = subConverter.convertSubjectDtoToEntity(subDto);
@@ -51,7 +51,7 @@ public class SubjectController {
 		return subService.updateSubjectById(id, sub);
 	}
 	
-	@DeleteMapping("/deleteSubjectById/{id}")
+	@DeleteMapping("/deleteSubjectById/{id}")//working
 	public ResponseEntity<String> deletedsubjectById(@PathVariable("id") int subId)
 	{
 		subService.deleteSubjectById(subId);

@@ -42,7 +42,6 @@ public class SubjectServiceimpl implements SubjectService{
 		
 		Subject existingSub = subRepository.findById(id).get();
 		
-		existingSub.setSubId(newSub.getSubId());
 		existingSub.setSubName(newSub.getSubName());
 		
 		

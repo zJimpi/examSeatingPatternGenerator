@@ -21,7 +21,6 @@ public class RoomServiceimpl implements RoomService {
 	
 	@Override
 	public RoomDto saveRoom(Room room) {
-		//custom method for generating university roll number
 		
 		roomRepository.save(room);
 		
@@ -42,7 +41,7 @@ public class RoomServiceimpl implements RoomService {
 		
 		Room existingRoom = roomRepository.findById(roomNo).get();
 		
-		existingRoom.setRoomNo(newRoom.getRoomNo());
+		//existingRoom.setRoomNo(newRoom.getRoomNo());
 		existingRoom.setNoOfSeats(newRoom.getNoOfSeats());
 		existingRoom.setStartRollNo(newRoom.getStartRollNo());
 		existingRoom.setEndRollNo(newRoom.getEndRollNo());
