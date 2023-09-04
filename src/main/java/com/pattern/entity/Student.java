@@ -28,7 +28,10 @@ public class Student {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int uniRoll; //custom metehods to insert the roll
+	private int classRoll; //custom methods to insert the roll
+	
+	@Column(length=4, unique = true)
+	private String uniRoll;
 	
 	@Column(length = 30, nullable = false)
 	private String stdName; 
