@@ -16,5 +16,8 @@ public interface StudentService {
 	
 	//delete
 	void deleteStudentById(int id);
+	
+
+	StudentDto assignUniRollNo(int stdId);
 
 }

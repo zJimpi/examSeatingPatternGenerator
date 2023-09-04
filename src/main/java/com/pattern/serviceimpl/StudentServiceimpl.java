@@ -1,6 +1,8 @@
 package com.pattern.serviceimpl;
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class StudentServiceimpl implements StudentService{
 	@Override
 	public StudentDto saveStudent(Student std) {
 		//custom method for genrating university roll number
+		
 		
 		stdRepository.save(std);
 		
@@ -61,5 +64,20 @@ public class StudentServiceimpl implements StudentService{
 		
 		stdRepository.deleteById(id);
 		
+	}
+
+	@Override
+	public StudentDto assignUniRollNo(int stdId) {
+		
+		Student std = stdRepository.findById(stdId).get();		
+		if(std.getDepartment()!=null)
+		{
+			int deptId = std.getDepartment().getDeptId();
+			int uniRoll = (deptId*1000) + stdId;
+			std.setUniRoll(uniRoll);
+			
+			stdRepository.save(std);				
+		}
+		return stdConverter.convertEntityToStudentDto(std);	
 	}
 }

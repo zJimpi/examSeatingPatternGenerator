@@ -22,11 +22,12 @@ import com.pattern.util.DepartmentConverter;
 public class DepatmentController {
 	
 	@Autowired
-	DepartmentService deptService;
+	DepartmentService deptService;//injecting DepartmentService
 	
 	@Autowired
-	DepartmentConverter deptConverter;
+	DepartmentConverter deptConverter;//injecting DepartmentConverter
 
+	//method to save department details
 	@PostMapping("/saveDepartment")
 	public DepartmentDto saveDepartmentDetails(@Valid @RequestBody DepartmentDto deptDto)
 	{
@@ -35,6 +36,7 @@ public class DepatmentController {
 		return deptService.saveDepartment(dept);
 	}
 	
+	//method to get department details using department id
 	@GetMapping("/getDepartmentById/{id}")
 	public DepartmentDto getDepartmentDetailsById(@PathVariable("id") int id)
 	{
