@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Table(name="student_details")
+
 @Entity
 @Getter
 @Setter
@@ -25,13 +27,16 @@ import lombok.ToString;
 public class Student {
 	
 	@Id
-	private int uniRoll;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int uniRoll; //custom metehods to insert the roll
 	
 	@Column(length = 30, nullable = false)
 	private String stdName; 
-	@Column(length = 10, nullable = false)
+	
+	@Column(length = 10, nullable = false,unique=true)
 	private String stdPhNo;
-	@Column(length = 20, nullable = false)
+	
+	@Column(length = 20, nullable = false, unique=true)
 	private String stdEmail;
 	
 	@ManyToOne

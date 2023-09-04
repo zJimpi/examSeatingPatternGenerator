@@ -4,34 +4,34 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-@Table(name="subject_details")
+
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@NoArgsConstructor
 public class Subject {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int subId;
 	
 	@Column(length=30, nullable=false)
 	private String subName;
 	
 	@ManyToOne
-	Department department;
+	private Department department;
 	
 	@ManyToMany
 	private List<Student> students;

@@ -19,7 +19,7 @@ import lombok.ToString;
 public class SeatAllocation {
 
 	@Id
-	private int seatNo;
+	private int seatNo;//custom method
 	
 	@OneToOne
 	private Student student;
