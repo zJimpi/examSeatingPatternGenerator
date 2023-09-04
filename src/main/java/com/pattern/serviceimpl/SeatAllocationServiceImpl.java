@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pattern.entity.Room;
 import com.pattern.entity.Student;
+import com.pattern.repository.DepartmentRepository;
 import com.pattern.repository.RoomRepository;
 import com.pattern.repository.StudentRepository;
 import com.pattern.service.SeatAlllocationService;
@@ -20,11 +21,15 @@ public class SeatAllocationServiceImpl implements SeatAlllocationService{
 	@Autowired
 	RoomRepository roomRepository;
 	
+	@Autowired
+	DepartmentRepository deptRepository;
+	
 	@Override
-	public  ArrayList<ArrayList<Integer>> patternGeneration(Student std,Room room) {
+	public  ArrayList<ArrayList<Integer>> patternGeneration(Student std,int roomId) {
 	    
-		int totalSeat = room.getNoOfSeats();
-	    int countDepartment = 5;
+		int totalSeat = roomRepository.findNoOfSeatByRoomId(roomId);
+	    int countDepartment = deptRepository.findTotalNoOfDepartment();
+	    
 	    int row = countDepartment;
 	    int nearestWholeNum = totalSeat;
 
@@ -41,7 +46,7 @@ public class SeatAllocationServiceImpl implements SeatAlllocationService{
 	    for (int i = 0; i < row; i++) {
 	        ArrayList<Integer> rowList = new ArrayList<>();
 	        for (int j = 0; j < col; j++) {
-	            rowList.add(0); //assign stuend to room
+	            rowList.add(0); //assign diferent dept sstudent to seats
 	        }
 	        seat.add(rowList);
 	    }
