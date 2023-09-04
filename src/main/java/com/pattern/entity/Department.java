@@ -31,6 +31,9 @@ public class Department {
 	@Column(length=10, nullable=false, unique=true)
 	private String deptName;
 	
+	@Column(nullable = true)
+	private int totalStudents;
+	
 	@OneToMany
 	private List<Student> students;
 	

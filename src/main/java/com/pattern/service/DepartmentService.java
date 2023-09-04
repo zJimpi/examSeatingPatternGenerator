@@ -17,5 +17,10 @@ public interface DepartmentService {
 		
 	//delete
 	void deleteDepartmentById(int id);
+	
+	
+	void assignStudentToDept(int stdid, int deptId);
+	
+	void assignSubjectsToDept(int subid, int deptId);
 
 }
