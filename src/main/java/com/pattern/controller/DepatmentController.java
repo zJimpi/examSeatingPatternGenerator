@@ -58,4 +58,11 @@ public class DepatmentController {
 		deptService.deleteDepartmentById(deptId);
 		return new ResponseEntity<String>("Department with Id:"+deptId+" deleted sucessfully!",HttpStatus.OK);
 	}
+	
+	@PostMapping("/assignStd/{sId}/toDept/{dId}")
+	public ResponseEntity<String> asssignStdToDept(@PathVariable("sId") int stdId, @PathVariable("dId") int deptId )
+	{
+		deptService.assignStudentToDept(stdId, deptId);
+		return new ResponseEntity<String>("Student with id "+stdId+" assigned to deopartment id "+deptId, HttpStatus.OK);
+	}
 }

@@ -99,9 +99,6 @@ public class DepartmentServiceimpl implements DepartmentService {
 		subject.setDepartment(dept);
 		
 		subRepository.save(subject);
-		deptRepository.save(dept);
-		
-		
+		deptRepository.save(dept);	
 	}
-
 }
