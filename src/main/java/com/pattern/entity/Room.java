@@ -27,12 +27,6 @@ public class Room {
 	@Column(nullable = false)
 	private int noOfSeats;
 	
-	@Column(nullable = true)
-	private int startRollNo;
-	
-	@Column(nullable = true)
-	private int endRollNo;
-	
 	@OneToOne
 	private SeatAllocation seatAllocation;
 	

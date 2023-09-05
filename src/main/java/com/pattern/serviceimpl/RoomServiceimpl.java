@@ -7,6 +7,7 @@ import com.pattern.dto.RoomDto;
 import com.pattern.entity.Room;
 import com.pattern.exception.ResourceNotFoundException;
 import com.pattern.repository.RoomRepository;
+import com.pattern.repository.SeatAllocationRepository;
 import com.pattern.service.RoomService;
 import com.pattern.util.RoomConverter;
 
@@ -18,6 +19,9 @@ public class RoomServiceimpl implements RoomService {
 	
 	@Autowired
 	RoomConverter roomConverter;
+	
+	@Autowired
+	SeatAllocationRepository seatAlloRepository;
 	
 	@Override
 	public RoomDto saveRoom(Room room) {
@@ -43,8 +47,8 @@ public class RoomServiceimpl implements RoomService {
 		
 		//existingRoom.setRoomNo(newRoom.getRoomNo());
 		existingRoom.setNoOfSeats(newRoom.getNoOfSeats());
-		existingRoom.setStartRollNo(newRoom.getStartRollNo());
-		existingRoom.setEndRollNo(newRoom.getEndRollNo());
+		
+		
 		
 		roomRepository.save(existingRoom);
 		

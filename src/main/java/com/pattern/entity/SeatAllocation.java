@@ -1,5 +1,7 @@
 package com.pattern.entity;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -19,12 +21,17 @@ import lombok.ToString;
 public class SeatAllocation {
 
 	@Id
-	private int seatNo;//custom method
+	private int seatAlloId;//custom method
+	
+	private int seatNo;
 	
 	@OneToOne
 	private Student student;
 	
 	@OneToOne
 	private Room room;
+
+	private ArrayList<ArrayList<Integer>> roomPattern ;
+		
 	
 }

@@ -1,5 +1,6 @@
 package com.pattern.service;
 
+
 import com.pattern.dto.StudentDto;
 import com.pattern.entity.Student;
 
@@ -17,4 +18,6 @@ public interface StudentService {
 	//delete
 	void deleteStudentById(int id);
 
+	//id..ahhhhhh
+	Student getStudentBYUniRollAndDeptId(int deptId,int uniRoll);
 }

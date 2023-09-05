@@ -62,4 +62,12 @@ public class StudentServiceimpl implements StudentService{
 		stdRepository.deleteById(id);
 		
 	}
+
+	@Override
+	public Student getStudentBYUniRollAndDeptId(int deptId, int uniRoll) {
+		
+		Student std = stdRepository.getStudentBYUniRollAndDeptId(deptId, uniRoll);
+		
+		return std;
+	}
 }
