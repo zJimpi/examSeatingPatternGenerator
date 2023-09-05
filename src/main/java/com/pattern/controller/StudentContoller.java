@@ -56,4 +56,10 @@ public class StudentContoller {
 		stdService.deleteStudentById(stdId);
 		return new ResponseEntity<String>("Student with Id:"+stdId+" deleted sucessfully!",HttpStatus.OK);
 	}
+	
+	@GetMapping("/assignUniRoll/{id}")
+	public StudentDto assignUniRoll(@PathVariable("id") int id)
+	{
+		return stdService.assignUniRollNo(id);
+	}
 }

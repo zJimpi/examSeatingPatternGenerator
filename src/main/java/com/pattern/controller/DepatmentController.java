@@ -22,11 +22,12 @@ import com.pattern.util.DepartmentConverter;
 public class DepatmentController {
 	
 	@Autowired
-	DepartmentService deptService;
+	DepartmentService deptService;//injecting DepartmentService
 	
 	@Autowired
-	DepartmentConverter deptConverter;
+	DepartmentConverter deptConverter;//injecting DepartmentConverter
 
+	//method to save department details
 	@PostMapping("/saveDepartment")
 	public DepartmentDto saveDepartmentDetails(@Valid @RequestBody DepartmentDto deptDto)
 	{
@@ -35,6 +36,7 @@ public class DepatmentController {
 		return deptService.saveDepartment(dept);
 	}
 	
+	//method to get department details using department id
 	@GetMapping("/getDepartmentById/{id}")
 	public DepartmentDto getDepartmentDetailsById(@PathVariable("id") int id)
 	{
@@ -55,5 +57,12 @@ public class DepatmentController {
 	{
 		deptService.deleteDepartmentById(deptId);
 		return new ResponseEntity<String>("Department with Id:"+deptId+" deleted sucessfully!",HttpStatus.OK);
+	}
+	
+	@PostMapping("/assignStd/{sId}/toDept/{dId}")
+	public ResponseEntity<String> asssignStdToDept(@PathVariable("sId") int stdId, @PathVariable("dId") int deptId )
+	{
+		deptService.assignStudentToDept(stdId, deptId);
+		return new ResponseEntity<String>("Student with id "+stdId+" assigned to deopartment id "+deptId, HttpStatus.OK);
 	}
 }
