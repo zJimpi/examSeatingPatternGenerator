@@ -10,31 +10,34 @@ import com.pattern.entity.Department;
 
 public interface DepartmentService {
 	
-	//create
+	//Create and save a new Department.
 	DepartmentDto saveDepartment(Department dept);
 	
-	//read
+	//Retrieve a Department by its unique ID.
 	DepartmentDto getDepartmentById(int id);
 		
-	//update
+	//Update a Department by its unique ID.
 	DepartmentDto updateDepartmentById(int id,Department std);
 		
-	//delete
+	// Delete a Department by its unique ID.
 	void deleteDepartmentById(int id);
 	
-	
+	//Assign a student to a department.
 	void assignStudentToDept(int stdid, int deptId);
 	
+	//Assign subjects to a department.
 	void assignSubjectsToDept(int subid, int deptId);
 	
-
+	//Retrieve a Department by its name.
 	DepartmentDto getDepartmentByName(String name);
 	
+	//Generate an exam routine for a department by department ID.
 	List<SubjectDto> generateExamRoutineByDeptId(int deptId);
 	
+	//Retrieve the exam routine for a department by department ID.
 	List<SubjectDto> getExamRoutineByDeptId(int deptId);
 
-	
+	//Get the total number of departments in the system.
 	long getTotalNoOfDepartment();
 	
 	

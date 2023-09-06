@@ -5,15 +5,15 @@ import com.pattern.entity.ExamSeatNumber;
 
 public interface ExamSeatNumberService {
 
-	//create 
+	//Create and save an ExamSeatNumber associated with a specific room. 
 	void saveExamSeatNumber(int roomId);
 	
-	//read
+	//Retrieve an ExamSeatNumber by its unique ID.
 	ExamSeatNumberDto getExamSeatNumberById(int id);
 	
-	//update
+	//Update an ExamSeatNumber by its unique ID.
 	ExamSeatNumberDto updateExamSeatNumberById(int id,ExamSeatNumber seat);
 	
-	//delete
+	//Delete an ExamSeatNumber by its unique ID.
 	void deleteExamSeatNumberById(int id);
 }

@@ -10,10 +10,11 @@ import com.pattern.entity.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
-	
+	//Custom query to find students by their name.
 	@Query("from Student where stdName=:e")
 	List<Student> findStudentByName(@Param("e") String name );
 	
+	//Custom query to find a student by their email.
 	@Query("from Student where stdEmail=:e")
 	Student findByEmail(@Param("e")String email);
 	
@@ -22,7 +23,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 	List<Student> getStudentByDeptName(@Param("name")String deptName);
 
 
-	//maybe not required????
+	//Custom query to fetch students' details belonging to a department by department name.
 	@Query("from Student where dept=:d and uniRoll=:r")
 	Student getStudentBYUniRollAndDeptId(@Param("d") int deptId,@Param("r") int uniRoll);
 	

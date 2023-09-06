@@ -24,53 +24,65 @@ public class SubjectServiceimpl implements SubjectService{
 	
 	@Override
 	public SubjectDto saveSubject(Subject sub) {
-		//custom method for generating university roll number
-		
-		subRepository.save(sub);
-		
-		return subConverter.convertEntityToSubjectDto(sub);
+	    // Custom method for generating university roll number
+	    
+	    // Save the subject to the repository
+	    subRepository.save(sub);
+	    
+	    // Convert the saved subject entity to a SubjectDto and return it
+	    return subConverter.convertEntityToSubjectDto(sub);
 	}
 
 	@Override
 	public SubjectDto getSubjectById(int id) {
-		
-		Subject sub = subRepository.findById(id).orElseThrow(()->
-		new ResourceNotFoundException("Subject", "id", id));
-		
-		return subConverter.convertEntityToSubjectDto(sub);
+	    // Retrieve the subject from the repository by its ID, or throw a ResourceNotFoundException if not found
+	    Subject sub = subRepository.findById(id).orElseThrow(() ->
+	        new ResourceNotFoundException("Subject", "id", id));
+	    
+	    // Convert the retrieved subject entity to a SubjectDto and return it
+	    return subConverter.convertEntityToSubjectDto(sub);
 	}
 
 	@Override
-	public SubjectDto updateSubjectById(int id , Subject newSub) {
-		
-		Subject existingSub = subRepository.findById(id).get();
-		
-		existingSub.setSubName(newSub.getSubName());
-		
-		
-		subRepository.save(existingSub);
-		
-		return subConverter.convertEntityToSubjectDto(existingSub);
+	public SubjectDto updateSubjectById(int id, Subject newSub) {
+	    // Retrieve the existing subject from the repository by its ID
+	    Subject existingSub = subRepository.findById(id).get();
+	    
+	    // Update the subject's name with the new name provided
+	    existingSub.setSubName(newSub.getSubName());
+	    
+	    // Save the updated subject entity to the repository
+	    subRepository.save(existingSub);
+	    
+	    // Convert the updated subject entity to a SubjectDto and return it
+	    return subConverter.convertEntityToSubjectDto(existingSub);
 	}
 
 	@Override
 	public void deleteSubjectById(int id) {
-		
-		subRepository.findById(id).orElseThrow(()->
-		new ResourceNotFoundException("Subject", "id", id));
-		
-		subRepository.deleteById(id);	
+	    // Check if the subject with the given ID exists, or throw a ResourceNotFoundException if not found
+	    subRepository.findById(id).orElseThrow(() ->
+	        new ResourceNotFoundException("Subject", "id", id));
+	    
+	    // Delete the subject from the repository by its ID
+	    subRepository.deleteById(id);    
 	}
 
 	@Override
 	public List<SubjectDto> getSubjectLists(int stdId) {
-		
-		List<Subject> subjects = subRepository.getSubjectByDeptId(stdId);
-		List<SubjectDto> subDtos = new ArrayList<>();
-		for(Subject s : subjects)
-		{
-			subDtos.add(subConverter.convertEntityToSubjectDto(s));
-		}		
-		return subDtos;
+	    // Retrieve a list of subjects by department ID from the repository
+	    List<Subject> subjects = subRepository.getSubjectByDeptId(stdId);
+	    
+	    // Initialize a list to store SubjectDto objects
+	    List<SubjectDto> subDtos = new ArrayList<>();
+	    
+	    // Convert each subject entity to a SubjectDto and add it to the list
+	    for (Subject s : subjects) {
+	        subDtos.add(subConverter.convertEntityToSubjectDto(s));
+	    }    
+	    
+	    // Return the list of SubjectDto objects
+	    return subDtos;
 	}
+
 }

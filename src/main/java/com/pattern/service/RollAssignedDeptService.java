@@ -5,15 +5,15 @@ import com.pattern.entity.RollAssignedDept;
 
 public interface RollAssignedDeptService {
 
-		//create 
-		RollAssignedDeptDto saveRollAssignedDept(RollAssignedDept dRoll);
+	//Create and save a new RollAssignedDept entry. 
+	RollAssignedDeptDto saveRollAssignedDept(RollAssignedDept dRoll);
 		
-		//read
-		RollAssignedDeptDto getRollAssignedDeptById(int id);
+	//Retrieve a RollAssignedDept entry by its unique ID.
+	RollAssignedDeptDto getRollAssignedDeptById(int id);
 		
-		//update
-		RollAssignedDeptDto updateRollAssignedDeptById(int id,RollAssignedDept dRoll);
+	//Update a RollAssignedDept entry by its unique ID.
+	RollAssignedDeptDto updateRollAssignedDeptById(int id,RollAssignedDept dRoll);
 		
-		//delete
-		void deleteRollAssignedDeptById(int id);
+	//Delete a RollAssignedDept entry by its unique ID.
+	void deleteRollAssignedDeptById(int id);
 }

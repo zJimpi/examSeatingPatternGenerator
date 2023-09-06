@@ -11,17 +11,20 @@ import com.pattern.entity.Student;
 
 public interface DepartmentRepository extends JpaRepository<Department, Integer> {
 	
+	//Custom query to find the total number of distinct departments in the database.
 	@Query("select count(distinct d.deptId) from Department d")
-
 	int findTotalNoOfDepartment();
 	
+	
+	//Custom query to find a Department entity by its name.
 	@Query("from Department where deptName=:e")
 	Department findDepartmentByName(@Param("e") String name );
 
+	//Custom method to find the total number of departments without using a query.
 	int getTotalNoOfDepartment();
 	
 	
-	//fetch students by department number
+	//Custom query to fetch students belonging to a specific department by department number.
 	@Query("from Student where dept=(from Department where deptId=:d)")
 	List<Student> getStudentsByDeptId(@Param("d") int deptId);
 }

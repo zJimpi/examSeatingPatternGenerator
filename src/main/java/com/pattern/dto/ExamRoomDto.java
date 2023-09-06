@@ -17,6 +17,6 @@ public class ExamRoomDto {
 	
 	private int totalSeats;
 	
-	@OneToMany
+	@OneToMany // One exam room can have many exam seat numbers.
 	private List<ExamSeatNumber> seatnumbers;
 }

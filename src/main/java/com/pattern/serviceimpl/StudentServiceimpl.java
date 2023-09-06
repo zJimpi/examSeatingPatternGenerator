@@ -35,130 +35,147 @@ public class StudentServiceimpl implements StudentService{
 	
 	@Override
 	public StudentDto saveStudent(Student std) {
-		//custom method for genrating university roll number
-		
-		
-		stdRepository.save(std);
-		
-		return stdConverter.convertEntityToStudentDto(std);
+	    // Custom method for generating university roll number (if any)
+	    
+	    // Save the student to the repository
+	    stdRepository.save(std);
+	    
+	    // Convert the saved student entity to a StudentDto and return it
+	    return stdConverter.convertEntityToStudentDto(std);
 	}
 
 	@Override
 	public StudentDto getStudentById(int id) {
-		
-		Student std = stdRepository.findById(id).orElseThrow(()->
-		new ResourceNotFoundException("Student", "id", id));
-		
-		return stdConverter.convertEntityToStudentDto(std);
+	    // Retrieve the student from the repository by its ID, or throw a ResourceNotFoundException if not found
+	    Student std = stdRepository.findById(id).orElseThrow(() ->
+	        new ResourceNotFoundException("Student", "id", id));
+	    
+	    // Convert the retrieved student entity to a StudentDto and return it
+	    return stdConverter.convertEntityToStudentDto(std);
 	}
 
 	@Override
-	public StudentDto updateStudentById(int id , Student newStd) {
-		
-		Student existingStd = stdRepository.findById(id).get();
-		
-		existingStd.setStdName(newStd.getStdName());
-		existingStd.setStdEmail(newStd.getStdEmail());
-		existingStd.setStdPhNo(newStd.getStdPhNo());
-		
-		stdRepository.save(existingStd);
-		
-		return stdConverter.convertEntityToStudentDto(existingStd);
+	public StudentDto updateStudentById(int id, Student newStd) {
+	    // Retrieve the existing student from the repository by its ID
+	    Student existingStd = stdRepository.findById(id).get();
+	    
+	    // Update the student's name, email, and phone number with the new values provided
+	    existingStd.setStdName(newStd.getStdName());
+	    existingStd.setStdEmail(newStd.getStdEmail());
+	    existingStd.setStdPhNo(newStd.getStdPhNo());
+	    
+	    // Save the updated student entity to the repository
+	    stdRepository.save(existingStd);
+	    
+	    // Convert the updated student entity to a StudentDto and return it
+	    return stdConverter.convertEntityToStudentDto(existingStd);
 	}
 
 	@Override
 	public void deleteStudentById(int id) {
-		
-		stdRepository.findById(id).orElseThrow(()->
-		new ResourceNotFoundException("Student", "id", id));
-		
-		stdRepository.deleteById(id);
-		
+	    // Check if the student with the given ID exists, or throw a ResourceNotFoundException if not found
+	    stdRepository.findById(id).orElseThrow(() ->
+	        new ResourceNotFoundException("Student", "id", id));
+	    
+	    // Delete the student from the repository by its ID
+	    stdRepository.deleteById(id);
 	}
 
 	@Override
 	public Student getStudentBYUniRollAndDeptId(int deptId, int uniRoll) {
-		
-		Student std = stdRepository.getStudentBYUniRollAndDeptId(deptId, uniRoll);
-		
-		return std;
+	    // Retrieve a student by their university roll number and department ID from the repository
+	    Student std = stdRepository.getStudentBYUniRollAndDeptId(deptId, uniRoll);
+	    
+	    // Return the retrieved student entity
+	    return std;
 	}
-	
+
 	@Override
 	public StudentDto assignUniRollNo(int stdId) {
-		
-		Student std = stdRepository.findById(stdId).get();		
-		if(std.getDepartment()!=null)
-		{
-			int deptId = std.getDepartment().getDeptId();
-			int uniRoll = (deptId*1000) + stdId;
-			std.setUniRoll(uniRoll);
-			
-			stdRepository.save(std);				
-		}
-		return stdConverter.convertEntityToStudentDto(std);	
+	    // Retrieve the student by their ID
+	    Student std = stdRepository.findById(stdId).get();
+	    
+	    // Check if the student's department is not null
+	    if (std.getDepartment() != null) {
+	        int deptId = std.getDepartment().getDeptId();
+	        int uniRoll = (deptId * 1000) + stdId;
+	        std.setUniRoll(uniRoll);
+	        
+	        // Save the updated student entity with the university roll number
+	        stdRepository.save(std);
+	    }
+	    
+	    // Convert the updated student entity to a StudentDto and return it
+	    return stdConverter.convertEntityToStudentDto(std);
 	}
 
 	@Override
-
-	public List<StudentDto> getStudentByName(String name)
-	{
-		List<Student> students = stdRepository.findStudentByName(name);
-		
-		List<StudentDto> sDtos = new ArrayList<>();
-		
-		for(Student s : students)
-		{
-			sDtos.add(stdConverter.convertEntityToStudentDto(s));
-		}
-		
-		return sDtos;
+	public List<StudentDto> getStudentByName(String name) {
+	    // Retrieve a list of students by their name from the repository
+	    List<Student> students = stdRepository.findStudentByName(name);
+	    
+	    // Initialize a list to store StudentDto objects
+	    List<StudentDto> sDtos = new ArrayList<>();
+	    
+	    // Convert each student entity to a StudentDto and add it to the list
+	    for (Student s : students) {
+	        sDtos.add(stdConverter.convertEntityToStudentDto(s));
+	    }
+	    
+	    // Return the list of StudentDto objects
+	    return sDtos;
 	}
-	
+
 	@Override
-	public StudentDto getStudentByEmail(String email)
-	{
-		Student std = stdRepository.findByEmail(email);
-				//.orElseThrow(()-> new ResourceNotFoundException("Student","email",email));
-		
-		return stdConverter.convertEntityToStudentDto(std);
+	public StudentDto getStudentByEmail(String email) {
+	    // Retrieve a student by their email address from the repository
+	    Student std = stdRepository.findByEmail(email);
+	    
+	    // Convert the retrieved student entity to a StudentDto and return it
+	    return stdConverter.convertEntityToStudentDto(std);
 	}
 
 	@Override
 	public List<StudentDto> getStudentByDeptName(String deptName) {
-		
-		List<Student> students = stdRepository.getStudentByDeptName(deptName);
-		List<StudentDto> sDtos = new ArrayList<>();
-		for(Student s : students)
-		{
-			sDtos.add(stdConverter.convertEntityToStudentDto(s));
-		}		
-		return sDtos;
+	    // Retrieve a list of students by department name from the repository
+	    List<Student> students = stdRepository.getStudentByDeptName(deptName);
+	    
+	    // Initialize a list to store StudentDto objects
+	    List<StudentDto> sDtos = new ArrayList<>();
+	    
+	    // Convert each student entity to a StudentDto and add it to the list
+	    for (Student s : students) {
+	        sDtos.add(stdConverter.convertEntityToStudentDto(s));
+	    }
+	    
+	    // Return the list of StudentDto objects
+	    return sDtos;
 	}
 
 	public int getLastRollOfDeptById(int deptId) {
-		
-		
-		int id = stdRepository.getclassRollByDept(deptId);
-		
-		
-		return id;
+	    // Retrieve the last class roll number of students in a department by department ID
+	    int id = stdRepository.getclassRollByDept(deptId);
+	    
+	    // Return the last class roll number
+	    return id;
 	}
 
 	@Override
 	public List<StudentDto> getStudentsByDeptId(int deptId) {
-		
-		List<Student> students =stdRepository.getStudentsByDeptId(deptId);
-		
-		List<StudentDto> sDtos = new ArrayList<>();
-		
-		for(Student s :students)
-		{
-			StudentDto sDto= stdConverter.convertEntityToStudentDto(s);
-			sDtos.add(sDto);
-		}
-		
-		
-		return sDtos;
+	    // Retrieve a list of students by department ID from the repository
+	    List<Student> students = stdRepository.getStudentsByDeptId(deptId);
+	    
+	    // Initialize a list to store StudentDto objects
+	    List<StudentDto> sDtos = new ArrayList<>();
+	    
+	    // Convert each student entity to a StudentDto and add it to the list
+	    for (Student s : students) {
+	        StudentDto sDto = stdConverter.convertEntityToStudentDto(s);
+	        sDtos.add(sDto);
+	    }
+	    
+	    // Return the list of StudentDto objects
+	    return sDtos;
 	}
+
 }

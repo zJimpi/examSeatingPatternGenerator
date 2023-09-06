@@ -8,17 +8,18 @@ import com.pattern.entity.Subject;
 
 public interface SubjectService {
 	
-	//create
+	//Create and save a new Subject.
 	SubjectDto saveSubject(Subject subject);
 		
-	//read
+	//Retrieve a Subject by its unique ID.
 	SubjectDto getSubjectById(int id);
 			
-	//update
+	//Update a Subject by its unique ID.
 	SubjectDto updateSubjectById(int id,Subject subject);
 			
-	//delete
+	//Delete a Subject by its unique ID.
 	void deleteSubjectById(int id);
 	
+	//Retrieve a list of Subjects associated with a student.
 	List<SubjectDto> getSubjectLists(int stdId);
 }

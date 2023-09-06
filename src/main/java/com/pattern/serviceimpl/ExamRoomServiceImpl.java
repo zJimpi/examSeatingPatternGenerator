@@ -13,36 +13,47 @@ import com.pattern.util.ExamRoomConverter;
 @Service
 public class ExamRoomServiceImpl implements ExamRoomService{
 
-	@Autowired
-	ExamRoomRepository exRoomRepository;
-	
-	@Autowired
-	ExamRoomConverter exRoomConverter;
-	
-	
-	@Override
-	public ExamRoomDto saveExamRoom(ExamRoom exRoom) {
-		exRoomRepository.save(exRoom);
-		return exRoomConverter.convertEntityToExamRoomDto(exRoom);
-	}
 
-	@Override
-	public ExamRoomDto getExamRoomById(int id) {
-		ExamRoom exRoom =exRoomRepository.findById(id).orElseThrow(
-				()-> new ResourceNotFoundException("ExamRoom", "id", id));
-		return exRoomConverter.convertEntityToExamRoomDto(exRoom);
-	}
+    // Autowired to inject ExamRoomRepository bean
+    @Autowired
+    ExamRoomRepository exRoomRepository;
 
-	@Override
-	public ExamRoomDto updateExamRoomById(int id, ExamRoom exRoom) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    // Autowired to inject ExamRoomConverter bean
+    @Autowired
+    ExamRoomConverter exRoomConverter;
 
-	@Override
-	public void deleteExamRoomById(int id) {
-		// TODO Auto-generated method stub
-		
-	}
+    // Method to save an ExamRoom entity to the database and return a DTO
+    @Override
+    public ExamRoomDto saveExamRoom(ExamRoom exRoom) {
+        // Save the ExamRoom entity using the repository
+        exRoomRepository.save(exRoom);
+        
+        // Convert the saved entity to a DTO using the converter
+        return exRoomConverter.convertEntityToExamRoomDto(exRoom);
+    }
+
+    // Method to retrieve an ExamRoom by its ID and return it as a DTO
+    @Override
+    public ExamRoomDto getExamRoomById(int id) {
+        // Find the ExamRoom entity by its ID in the repository
+        ExamRoom exRoom = exRoomRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("ExamRoom", "id", id));
+        
+        // Convert the found entity to a DTO using the converter
+        return exRoomConverter.convertEntityToExamRoomDto(exRoom);
+    }
+
+    // Method to update an ExamRoom by its ID and return it as a DTO
+    @Override
+    public ExamRoomDto updateExamRoomById(int id, ExamRoom exRoom) {
+       
+        // Currently, this method returns null
+        return null;
+    }
+
+    // Method to delete an ExamRoom by its ID
+    @Override
+    public void deleteExamRoomById(int id) {
+    }
 
 }
