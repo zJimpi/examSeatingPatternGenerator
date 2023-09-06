@@ -132,7 +132,8 @@ public class StudentServiceimpl implements StudentService{
 		for(Student s : students)
 		{
 			sDtos.add(stdConverter.convertEntityToStudentDto(s));
-		}	
+		}		
+		return sDtos;
 	}
 
 	public int getLastRollOfDeptById(int deptId) {
@@ -158,7 +159,6 @@ public class StudentServiceimpl implements StudentService{
 		}
 		
 		
-
 		return sDtos;
 	}
 }
