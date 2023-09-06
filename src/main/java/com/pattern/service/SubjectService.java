@@ -1,6 +1,8 @@
 package com.pattern.service;
 
 
+import java.util.List;
+
 import com.pattern.dto.SubjectDto;
 import com.pattern.entity.Subject;
 
@@ -17,4 +19,6 @@ public interface SubjectService {
 			
 	//delete
 	void deleteSubjectById(int id);
+	
+	List<SubjectDto> getSubjectLists(int stdId);
 }

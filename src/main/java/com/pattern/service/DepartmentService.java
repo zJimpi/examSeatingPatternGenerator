@@ -1,6 +1,9 @@
 package com.pattern.service;
 
+import java.util.List;
+
 import com.pattern.dto.DepartmentDto;
+import com.pattern.dto.SubjectDto;
 import com.pattern.entity.Department;
 
 
@@ -24,10 +27,16 @@ public interface DepartmentService {
 	
 	void assignSubjectsToDept(int subid, int deptId);
 	
+
+	DepartmentDto getDepartmentByName(String name);
+	
+	List<SubjectDto> generateExamRoutineByDeptId(int deptId);
+	
+	List<SubjectDto> getExamRoutineByDeptId(int deptId);
+
 	
 	long getTotalNoOfDepartment();
 	
 	
 	
-
 }

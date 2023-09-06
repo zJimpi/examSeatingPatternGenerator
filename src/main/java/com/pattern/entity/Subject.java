@@ -1,5 +1,6 @@
 package com.pattern.entity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -30,10 +31,15 @@ public class Subject {
 	@Column(length=30, nullable=false)
 	private String subName;
 	
+	@Column(nullable=true)
+	private LocalDate examDate;
+	
 	@ManyToOne
 	private Department department;
 	
 	@ManyToMany
 	private List<Student> students;
+	
+	
 
 }

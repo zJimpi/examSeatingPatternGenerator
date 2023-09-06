@@ -1,7 +1,9 @@
 package com.pattern.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
@@ -23,6 +25,8 @@ public class SubjectDto {
 	@NotNull(message="subject name cannot be blank")
 	@Size(max=30, message="max 30 charecters allowed")
 	private String subName;
+	
+	private LocalDate examDate;
 	
 	@ManyToOne
 	private Department department;

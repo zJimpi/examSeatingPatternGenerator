@@ -20,49 +20,71 @@ import com.pattern.entity.Student;
 import com.pattern.service.StudentService;
 import com.pattern.util.StudentConverter;
 
-@RestController
+@RestController//allows the class to handle the request made by the client
 public class StudentContoller {
 	
-	@Autowired
-	StudentService stdService;
+	@Autowired//automatically injects dependency
+	StudentService stdService;//injecting RoomService
 	
-	@Autowired
-	StudentConverter stdConverter;
+	@Autowired//automatically injects dependency
+	StudentConverter stdConverter;//injecting RoomConverter
 	
-	@PostMapping("/saveStudent")
+	//method to save student details
+	@PostMapping("/saveStudent")//url to invoke in postman
 	public StudentDto saveStudentDetails(@Valid @RequestBody StudentDto sDto)
 	{
-		Student std = stdConverter.convertStudentDtoToEntity(sDto);
+		Student std = stdConverter.convertStudentDtoToEntity(sDto);//converting dto to entity
 		
-		return stdService.saveStudent(std);
+		return stdService.saveStudent(std);//returning the entity object after saving in the repository
 	}
 	
-	@GetMapping("/getStudentById/{id}")
+	//method to get student using id
+	@GetMapping("/getStudentById/{id}")//url to invoke in postman
 	public StudentDto getStudentDetailsById(@PathVariable("id") int id)
 	{
-		return stdService.getStudentById(id);
+		return stdService.getStudentById(id);//invoking method from service layer 
 	}
 	
-	
-	@PutMapping("/updateStudentById/{stuId}")
+	//method to update student details using id
+	@PutMapping("/updateStudentById/{stuId}")//url to invoke in postman
 	public StudentDto updateStudentById(@PathVariable("stuId") int id,@RequestBody StudentDto sDto)
 	{
-		Student std = stdConverter.convertStudentDtoToEntity(sDto);
+		Student std = stdConverter.convertStudentDtoToEntity(sDto);//converting dto to entity
 		
-		return stdService.updateStudentById(id, std);
+		return stdService.updateStudentById(id, std);//returning the entity object after updating in the repository
 	}
 	
-	@DeleteMapping("/deleteStudentById/{id}")
+	//method to delete student using id
+	@DeleteMapping("/deleteStudentById/{id}")//url to invoke in postman
 	public ResponseEntity<String> deletedstudentById(@PathVariable("id") int stdId)
 	{
-		stdService.deleteStudentById(stdId);
-		return new ResponseEntity<String>("Student with Id:"+stdId+" deleted sucessfully!",HttpStatus.OK);
+		stdService.deleteStudentById(stdId);//invoking the delete method from service layer
+		return new ResponseEntity<String>("Student with Id:"+stdId+" deleted sucessfully!",HttpStatus.OK);//confirmation message
 	}
 	
-	@GetMapping("/assignUniRoll/{id}")
+	//method to assign university roll number to students
+	@GetMapping("/assignUniRoll/{id}")//url to invoke in postman
 	public StudentDto assignUniRoll(@PathVariable("id") int id)
 	{
-		return stdService.assignUniRollNo(id);
+		return stdService.assignUniRollNo(id);//invoking the assign method from service layer
+	}
+	
+	@GetMapping("/getStudentByName/{name}")
+	public List<StudentDto> findStudentByName(@PathVariable("name") String name)
+    {
+    	return stdService.getStudentByName(name);	
+    }
+	
+	@GetMapping("/getStudentByEmail/{email}")
+	public StudentDto findStudentByEmail(@PathVariable("email") String email)
+    {
+    	return stdService.getStudentByEmail(email);	
+    }
+	
+	@GetMapping("/getStudentFromDept/{deptName}")
+	public List<StudentDto> getStudentByDeptName(@PathVariable("deptName") String deptName)
+	{
+		return stdService.getStudentByDeptName(deptName);
 	}
 	
 	@GetMapping("/getLastRollofDept/{deptId}")
