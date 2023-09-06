@@ -24,27 +24,28 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+
 public class Student {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int classRoll; //custom methods to insert the roll
-	
-	@Column(length=4, nullable = true)
-	private int uniRoll;
-	
-	@Column(length = 30, nullable = false)
-	private String stdName; 
-	
-	@Column(length = 10, nullable = false,unique=true)
-	private String stdPhNo;
-	
-	@Column(length = 20, nullable = false, unique=true)
-	private String stdEmail;
-	
-	@ManyToOne
-	private Department department;
-	
-	@ManyToMany
-	private List<Subject> subjects;
+
+    @Id // primary key for the entity.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Specifies the primary key value to be auto generated 
+    private int classRoll; // Custom methods to insert the roll
+
+    @Column(length = 4, nullable = true) 
+    private int uniRoll;//university roll
+
+    @Column(length = 30, nullable = false) // Specifies column attributes in the database table.
+    private String stdName;//student name
+
+    @Column(length = 10, nullable = false, unique = true)
+    private String stdPhNo;// student phone number
+
+    @Column(length = 20, nullable = false, unique = true)
+    private String stdEmail;//student email
+
+    @ManyToOne // Defines a many-to-one relationship with the Department entity.
+    private Department department;
+
+    @ManyToMany // Defines a many-to-many relationship with the Subject entity.
+    private List<Subject> subjects;
 }

@@ -106,7 +106,7 @@ public class ExamSeatNumberServiceImpl implements ExamSeatNumberService {
 		int totalSeat = room.getTotalSeats();
 
 		// custom method in dept
-		int countDepartment = deptRepository.getTotalNoOfDepartment();
+		int countDepartment = deptRepository.findTotalNoOfDepartment();
 		int col = countDepartment;
 		int nearestWholeNum = totalSeat;
 		// incase few colums have more seats than others the the small clo will have the
