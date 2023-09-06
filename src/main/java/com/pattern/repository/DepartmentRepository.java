@@ -12,11 +12,14 @@ import com.pattern.entity.Student;
 public interface DepartmentRepository extends JpaRepository<Department, Integer> {
 	
 	@Query("select count(distinct d.deptId) from Department d")
-	int findTotalNoOfDepartment();
+	int getTotalNoOfDepartment();
 	
 	
 	//fectch students by department number
 	@Query("from Student where dept=(from Department where deptId=:d)")
 	List<Student> getStudentsByDeptId(@Param("d") int deptId);
+	
+	
+	
 
 }

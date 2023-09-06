@@ -5,10 +5,12 @@ import org.springframework.stereotype.Service;
 
 import com.pattern.dto.DepartmentDto;
 import com.pattern.entity.Department;
+import com.pattern.entity.RollAssignedDept;
 import com.pattern.entity.Student;
 import com.pattern.entity.Subject;
 import com.pattern.exception.ResourceNotFoundException;
 import com.pattern.repository.DepartmentRepository;
+import com.pattern.repository.RollAssignedDeptRepository;
 import com.pattern.repository.StudentRepository;
 import com.pattern.repository.SubjectRepository;
 import com.pattern.service.DepartmentService;
@@ -30,11 +32,19 @@ public class DepartmentServiceimpl implements DepartmentService {
 	@Autowired
 	SubjectRepository subRepository;
 	
+	@Autowired
+	RollAssignedDeptRepository dRollRepository;
+	
 	@Override
 	public DepartmentDto saveDepartment(Department dept) {
 		
 		deptRepository.save(dept);
+		//initialiazing uniroll with 1 when the department is getting created
+		RollAssignedDept dRoll =new RollAssignedDept();
+		dRoll.setDept(dept);
+		dRoll.setUniroll(0);
 		
+		dRollRepository.save(dRoll);
 		return deptConverter.convertEntityToDepartmentDto(dept);
 	}
 
@@ -100,5 +110,11 @@ public class DepartmentServiceimpl implements DepartmentService {
 		
 		subRepository.save(subject);
 		deptRepository.save(dept);	
+	}
+
+	@Override
+	public long getTotalNoOfDepartment() {
+		long deptCount =deptRepository.count();
+		return deptCount;
 	}
 }

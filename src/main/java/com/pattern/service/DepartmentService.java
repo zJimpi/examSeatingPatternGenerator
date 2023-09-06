@@ -4,6 +4,7 @@ import com.pattern.dto.DepartmentDto;
 import com.pattern.entity.Department;
 
 
+
 public interface DepartmentService {
 	
 	//create
@@ -22,5 +23,11 @@ public interface DepartmentService {
 	void assignStudentToDept(int stdid, int deptId);
 	
 	void assignSubjectsToDept(int subid, int deptId);
+	
+	
+	long getTotalNoOfDepartment();
+	
+	
+	
 
 }

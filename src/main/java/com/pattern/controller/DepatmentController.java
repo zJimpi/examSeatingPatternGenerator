@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pattern.dto.DepartmentDto;
 import com.pattern.entity.Department;
+import com.pattern.entity.RollAssignedDept;
 import com.pattern.service.DepartmentService;
 import com.pattern.util.DepartmentConverter;
 
@@ -64,5 +65,12 @@ public class DepatmentController {
 	{
 		deptService.assignStudentToDept(stdId, deptId);
 		return new ResponseEntity<String>("Student with id "+stdId+" assigned to deopartment id "+deptId, HttpStatus.OK);
+	}
+	
+	@GetMapping("/countTotalDept")
+	public long countTotalDepartment()
+	{
+		return deptService.getTotalNoOfDepartment();
+		
 	}
 }

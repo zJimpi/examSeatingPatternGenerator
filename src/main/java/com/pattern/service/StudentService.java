@@ -1,6 +1,10 @@
 package com.pattern.service;
 
 
+import java.util.List;
+
+import org.springframework.data.repository.query.Param;
+
 import com.pattern.dto.StudentDto;
 import com.pattern.entity.Student;
 
@@ -21,6 +25,12 @@ public interface StudentService {
 
 	StudentDto assignUniRollNo(int stdId);
 
-	//id..ahhhhhh
-	Student getStudentBYUniRollAndDeptId(int deptId,int uniRoll);
+	Student getStudentBYUniRollAndDeptId(int deptId, int uniRoll);
+	
+	int getLastRollOfDeptById(int DeptId);
+	
+	
+	//method to fetch stdent deatils from dept using deptId
+	List<StudentDto> getStudentsByDeptId(int deptId);
+	
 }

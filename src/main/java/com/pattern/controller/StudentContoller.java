@@ -1,5 +1,7 @@
 package com.pattern.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +63,18 @@ public class StudentContoller {
 	public StudentDto assignUniRoll(@PathVariable("id") int id)
 	{
 		return stdService.assignUniRollNo(id);
+	}
+	
+	@GetMapping("/getLastRollofDept/{deptId}")
+	public int getLastRollOfDeptById(@PathVariable("deptId") int deptId) {
+		
+		
+		return stdService.getLastRollOfDeptById(deptId);
+	}
+	
+	@GetMapping("/getStudentsByDeptId/{dId}")
+	public List<StudentDto> getStudentByDeptID(@PathVariable("dId") int deptId)
+	{
+		return stdService.getStudentsByDeptId(deptId);
 	}
 }

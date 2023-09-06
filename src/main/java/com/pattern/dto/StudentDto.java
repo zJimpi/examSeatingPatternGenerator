@@ -17,6 +17,7 @@ import lombok.Setter;
 @Setter
 public class StudentDto {
 
+	private int classRoll;
 	private int uniRoll;
 	
 	@NotNull(message="Student name is required")
