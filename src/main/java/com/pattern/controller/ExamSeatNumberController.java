@@ -21,25 +21,26 @@ import com.pattern.util.ExamSeatNumberConverter;
 public class ExamSeatNumberController {
 	
 	@Autowired
-	ExamSeatNumberService seatService;
+	ExamSeatNumberService seatService;  // Autowired service for managing exam seat numbers.
 	
 	@Autowired
-	ExamSeatNumberConverter seatConverter;
+	ExamSeatNumberConverter seatConverter;  // Autowired converter for converting seat data.
 	
+	// to assign exam seat numbers to students in a specific room.
 	@PostMapping("/assignExamSeatNumberToStudentByRoom/{roomId}")
 	public ResponseEntity<String> assignExamSeatNumberToStudent(@PathVariable("roomId") int roomId)
 	{
-		seatService.saveExamSeatNumber(roomId);
+		seatService.saveExamSeatNumber(roomId);  // Save assigned seat numbers for students in the specified room.
 		
-		return new ResponseEntity<String>("Student are assigned to seats in room id:"+roomId, HttpStatus.OK);
+		// Return a success response with a message indicating the assignment.
+		return new ResponseEntity<String>("Students are assigned to seats in room id:" + roomId, HttpStatus.OK);
 	}
 	
+	//to retrieve exam seat information by seat ID.
 	@GetMapping("/getExamSeatNumberById/{id}")
 	public ExamSeatNumberDto getExamSeatNumberById(@PathVariable("id") int id)
 	{
-		return seatService.getExamSeatNumberById(id);
+		return seatService.getExamSeatNumberById(id);  // Retrieve exam seat information by ID.
 	}
-	
-	//get setdent details by roono
-
 }
+
