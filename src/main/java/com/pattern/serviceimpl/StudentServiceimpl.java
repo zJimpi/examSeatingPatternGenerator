@@ -1,18 +1,20 @@
 package com.pattern.serviceimpl;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pattern.dto.StudentDto;
+import com.pattern.dto.SubjectDto;
 import com.pattern.entity.Student;
 import com.pattern.exception.ResourceNotFoundException;
 import com.pattern.repository.StudentRepository;
 import com.pattern.service.StudentService;
 import com.pattern.util.StudentConverter;
-
 
 @Service
 public class StudentServiceimpl implements StudentService{
@@ -79,5 +81,41 @@ public class StudentServiceimpl implements StudentService{
 			stdRepository.save(std);				
 		}
 		return stdConverter.convertEntityToStudentDto(std);	
+	}
+
+	@Override
+	public List<StudentDto> getStudentByName(String name)
+	{
+		List<Student> students = stdRepository.findStudentByName(name);
+		
+		List<StudentDto> sDtos = new ArrayList<>();
+		
+		for(Student s : students)
+		{
+			sDtos.add(stdConverter.convertEntityToStudentDto(s));
+		}
+		
+		return sDtos;
+	}
+	
+	@Override
+	public StudentDto getStudentByEmail(String email)
+	{
+		Student std = stdRepository.findByEmail(email);
+				//.orElseThrow(()-> new ResourceNotFoundException("Student","email",email));
+		
+		return stdConverter.convertEntityToStudentDto(std);
+	}
+
+	@Override
+	public List<StudentDto> getStudentByDeptName(String deptName) {
+		
+		List<Student> students = stdRepository.getStudentByDeptName(deptName);
+		List<StudentDto> sDtos = new ArrayList<>();
+		for(Student s : students)
+		{
+			sDtos.add(stdConverter.convertEntityToStudentDto(s));
+		}		
+		return sDtos;
 	}
 }

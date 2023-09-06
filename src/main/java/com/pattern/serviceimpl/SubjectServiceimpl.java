@@ -1,5 +1,8 @@
 package com.pattern.serviceimpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +24,7 @@ public class SubjectServiceimpl implements SubjectService{
 	
 	@Override
 	public SubjectDto saveSubject(Subject sub) {
-		//custom method for genrating university roll number
+		//custom method for generating university roll number
 		
 		subRepository.save(sub);
 		
@@ -57,5 +60,17 @@ public class SubjectServiceimpl implements SubjectService{
 		new ResourceNotFoundException("Subject", "id", id));
 		
 		subRepository.deleteById(id);	
+	}
+
+	@Override
+	public List<SubjectDto> getSubjectLists(int stdId) {
+		
+		List<Subject> subjects = subRepository.getSubjectByDeptId(stdId);
+		List<SubjectDto> subDtos = new ArrayList<>();
+		for(Subject s : subjects)
+		{
+			subDtos.add(subConverter.convertEntityToSubjectDto(s));
+		}		
+		return subDtos;
 	}
 }
