@@ -19,6 +19,7 @@ import com.pattern.dto.DepartmentDto;
 import com.pattern.dto.StudentDto;
 import com.pattern.dto.SubjectDto;
 import com.pattern.entity.Department;
+import com.pattern.entity.RollAssignedDept;
 import com.pattern.service.DepartmentService;
 import com.pattern.util.DepartmentConverter;
 
@@ -97,5 +98,12 @@ public class DepatmentController {
 	public List<SubjectDto> getExamRoutineByDeptId(@PathVariable("dId") int deptId)
 	{
 		return deptService.getExamRoutineByDeptId(deptId);
+	}
+	
+	@GetMapping("/countTotalDept")
+	public long countTotalDepartment()
+	{
+		return deptService.getTotalNoOfDepartment();
+		
 	}
 }

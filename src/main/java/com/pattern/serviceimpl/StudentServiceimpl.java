@@ -9,9 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pattern.dto.StudentDto;
+
 import com.pattern.dto.SubjectDto;
+
+import com.pattern.entity.Department;
+
 import com.pattern.entity.Student;
 import com.pattern.exception.ResourceNotFoundException;
+import com.pattern.repository.DepartmentRepository;
 import com.pattern.repository.StudentRepository;
 import com.pattern.service.StudentService;
 import com.pattern.util.StudentConverter;
@@ -24,6 +29,9 @@ public class StudentServiceimpl implements StudentService{
 	
 	@Autowired
 	StudentConverter stdConverter;
+	
+	@Autowired
+	DepartmentRepository deptRepository;
 	
 	@Override
 	public StudentDto saveStudent(Student std) {
@@ -69,6 +77,14 @@ public class StudentServiceimpl implements StudentService{
 	}
 
 	@Override
+	public Student getStudentBYUniRollAndDeptId(int deptId, int uniRoll) {
+		
+		Student std = stdRepository.getStudentBYUniRollAndDeptId(deptId, uniRoll);
+		
+		return std;
+	}
+	
+	@Override
 	public StudentDto assignUniRollNo(int stdId) {
 		
 		Student std = stdRepository.findById(stdId).get();		
@@ -84,6 +100,7 @@ public class StudentServiceimpl implements StudentService{
 	}
 
 	@Override
+
 	public List<StudentDto> getStudentByName(String name)
 	{
 		List<Student> students = stdRepository.findStudentByName(name);
@@ -115,7 +132,33 @@ public class StudentServiceimpl implements StudentService{
 		for(Student s : students)
 		{
 			sDtos.add(stdConverter.convertEntityToStudentDto(s));
-		}		
+		}	
+	}
+
+	public int getLastRollOfDeptById(int deptId) {
+		
+		
+		int id = stdRepository.getclassRollByDept(deptId);
+		
+		
+		return id;
+	}
+
+	@Override
+	public List<StudentDto> getStudentsByDeptId(int deptId) {
+		
+		List<Student> students =stdRepository.getStudentsByDeptId(deptId);
+		
+		List<StudentDto> sDtos = new ArrayList<>();
+		
+		for(Student s :students)
+		{
+			StudentDto sDto= stdConverter.convertEntityToStudentDto(s);
+			sDtos.add(sDto);
+		}
+		
+		
+
 		return sDtos;
 	}
 }

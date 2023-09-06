@@ -7,6 +7,7 @@ import com.pattern.dto.SubjectDto;
 import com.pattern.entity.Department;
 
 
+
 public interface DepartmentService {
 	
 	//create
@@ -26,10 +27,16 @@ public interface DepartmentService {
 	
 	void assignSubjectsToDept(int subid, int deptId);
 	
+
 	DepartmentDto getDepartmentByName(String name);
 	
 	List<SubjectDto> generateExamRoutineByDeptId(int deptId);
 	
 	List<SubjectDto> getExamRoutineByDeptId(int deptId);
 
+	
+	long getTotalNoOfDepartment();
+	
+	
+	
 }

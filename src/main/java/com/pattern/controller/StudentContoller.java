@@ -86,4 +86,17 @@ public class StudentContoller {
 	{
 		return stdService.getStudentByDeptName(deptName);
 	}
+	
+	@GetMapping("/getLastRollofDept/{deptId}")
+	public int getLastRollOfDeptById(@PathVariable("deptId") int deptId) {
+		
+		
+		return stdService.getLastRollOfDeptById(deptId);
+	}
+	
+	@GetMapping("/getStudentsByDeptId/{dId}")
+	public List<StudentDto> getStudentByDeptID(@PathVariable("dId") int deptId)
+	{
+		return stdService.getStudentsByDeptId(deptId);
+	}
 }
