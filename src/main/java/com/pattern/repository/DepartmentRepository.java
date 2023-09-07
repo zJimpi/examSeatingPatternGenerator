@@ -19,10 +19,6 @@ public interface DepartmentRepository extends JpaRepository<Department, Integer>
 	//Custom query to find a Department entity by its name.
 	@Query("from Department where deptName=:e")
 	Department findDepartmentByName(@Param("e") String name );
-
-	//Custom method to find the total number of departments without using a query.
-	int getTotalNoOfDepartment();
-	
 	
 	//Custom query to fetch students belonging to a specific department by department number.
 	@Query("from Student where dept=(from Department where deptId=:d)")

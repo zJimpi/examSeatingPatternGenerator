@@ -1,7 +1,6 @@
 package com.pattern.serviceimpl;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -99,14 +98,14 @@ public class ExamSeatNumberServiceImpl implements ExamSeatNumberService {
 
 	}
 
-	// pattern is gentarted
+	// pattern is gentarted //half working method
 	public ArrayList<ArrayList<Student>> sendAlternatingStudents(int roomId) {
 		// id is required
 		ExamRoom room = exRoomRepository.findById(roomId).get();
 		int totalSeat = room.getTotalSeats();
 
 		// custom method in dept
-		int countDepartment = deptRepository.getTotalNoOfDepartment();
+		int countDepartment = deptRepository.findTotalNoOfDepartment();
 		int col = countDepartment;
 		int nearestWholeNum = totalSeat;
 		// incase few colums have more seats than others the the small clo will have the
@@ -127,6 +126,9 @@ public class ExamSeatNumberServiceImpl implements ExamSeatNumberService {
 		// creat pattern and assing the seats as we cearte
 		for (int i = 0; i <= row; i++) {
 			ArrayList<Student> rowList = new ArrayList<>();
+			
+			
+			
 			for (int j = 0; j <= col; j++) {
 				// creating alternating department ids
 				int deptId = (i + j) % col + 1; // 1 2 3 4
@@ -186,5 +188,6 @@ public class ExamSeatNumberServiceImpl implements ExamSeatNumberService {
 		return seat;
 
 	}
+		
 
 }
