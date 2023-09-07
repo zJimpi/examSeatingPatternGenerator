@@ -29,11 +29,12 @@ public class ExamRoom {
 	
 	@OneToMany
 	private List<ExamSeatNumber> seatnumbers;
-	
+
 	@Builder
-	public ExamRoom(int roomId,int totalSeats)
-	{
+	public ExamRoom(int roomId, int totalSeats) {
+		
 		this.roomId = roomId;
 		this.totalSeats = totalSeats;
 	}
+	
 }
