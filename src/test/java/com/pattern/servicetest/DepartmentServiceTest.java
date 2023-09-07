@@ -35,7 +35,7 @@ public class DepartmentServiceTest {
 	StudentRepository stdRepository;
 	
 	@Test
-	@DisplayName("Positive Case 1")
+	@DisplayName("Save department test")
 	void testPositiveSaveDepartment()
 	{
 		// Creating a Department object for testing
@@ -52,7 +52,7 @@ public class DepartmentServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Negative Case")
+	@DisplayName("save department negative test")
 	void testNegativeSaveDepartment()
 	{
 		// Creating a Department object for testing
@@ -69,7 +69,7 @@ public class DepartmentServiceTest {
 	}
 	
 	@Test
-	@DisplayName("Positive Case 2")
+	@DisplayName("Assign student to department test")
 	void testAssignStdToDept()
 	{
 		// Creating a Department and Student object for testing
