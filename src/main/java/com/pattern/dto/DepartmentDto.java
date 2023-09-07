@@ -20,14 +20,14 @@ public class DepartmentDto {
 	private int deptId;
 	
 
-	@Size(max=10,message="max 10 chareters allowed")
+	@Size(max=10,message="max 10 characters allowed")
 	@NotNull(message="department name is required")
 	private String deptName;
 	
-	@OneToMany
-	private List<Student> students;
+	@OneToMany 
+	private List<Student> students;// One department can have many students.
 	
 	@OneToMany
-	private List<Subject> subjects;
+	private List<Subject> subjects;// One department can have many subjects.
 
 }

@@ -12,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,4 +39,11 @@ public class Subject {
 
     @ManyToMany // Defines a many-to-many relationship with the Student entity.
     private List<Student> students; // List of students enrolled in this subject.
+    
+    @Builder
+    public Subject(int subId,String subName)
+    {
+    	this.subId = subId;
+    	this.subName = subName;
+    }
 }

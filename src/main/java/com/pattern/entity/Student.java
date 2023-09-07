@@ -9,9 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -48,4 +49,14 @@ public class Student {
 
     @ManyToMany // Defines a many-to-many relationship with the Subject entity.
     private List<Subject> subjects;
+    
+    @Builder
+	public Student(int classRoll, int uniRoll, String stdName, String stdPhNo, String stdEmail)
+	{
+		this.classRoll = classRoll;
+		this.uniRoll = uniRoll;
+		this.stdName = stdName;
+		this.stdPhNo = stdPhNo;
+		this.stdEmail = stdEmail;
+	}
 }

@@ -5,15 +5,15 @@ import com.pattern.entity.ExamRoom;
 
 public interface ExamRoomService {
 
-	//create 
+	//Create and save a new ExamRoom. 
 	ExamRoomDto saveExamRoom(ExamRoom exRoom);
 		
-		//read
+	//Retrieve an ExamRoom by its unique ID.
 	ExamRoomDto getExamRoomById(int id);
 		
-		//update
+	//Update an ExamRoom by its unique ID.
 	ExamRoomDto updateExamRoomById(int id,ExamRoom exRoom);
 		
-		//delete
+	//Delete an ExamRoom by its unique ID
 	void deleteExamRoomById(int id);
 }

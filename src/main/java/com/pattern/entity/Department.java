@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,4 +39,12 @@ public class Department {
 
 	@OneToMany // Define a one-to-many relationship with the Subject entity.
 	private List<Subject> subjects; // A list of subjects offered by this department.
+	
+	@Builder
+	public Department(int deptId,String deptName,int totalStudents)
+	{
+		this.deptId = deptId;
+		this.deptName = deptName;
+		this.totalStudents = totalStudents;
+	}
 }
